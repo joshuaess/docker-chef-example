@@ -7,10 +7,6 @@ ssl_node = 'apache-chef'
 cert_dir = '/etc/apache2/ssl'
 hostname = 'localhost'
 
-# apt_update 'Update the apt cache when chef runs' do
-#   action :update
-# end
-
 package 'apache2' do
   action :install
 end
