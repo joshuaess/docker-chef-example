@@ -42,7 +42,7 @@ end
 directory "#{cert_dir}" do
   owner 'root'
   group 'root'
-  mode '0600'
+  mode '0500'
   action :create
 end
 
@@ -59,6 +59,20 @@ script 'generate ssl cert' do
   EOH
   not_if { ::File.exists?("#{cert_dir}/#{ssl_node}.crt") }
 end
+
+file "#{cert_dir}/#{ssl_node}.crt" do
+  owner 'root'
+  group 'root'
+  mode '0400'
+end
+
+file "#{cert_dir}/#{ssl_node}.key" do
+  owner 'root'
+  group 'root'
+  mode '0400'
+end
+
+
 
 script 'enable apache ssl module' do
   interpreter 'bash'
